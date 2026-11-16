@@ -1,0 +1,403 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101827">
+<title>NEXORA | Digital Experience</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #0b1120;
+  color: white;
+  min-height: 100vh;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 7%;
+  border-bottom: 1px solid #26334a;
+}
+
+.logo {
+  font-size: 25px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: #70c9ff;
+}
+
+.logo span {
+  color: white;
+}
+
+header button {
+  background: #192b43;
+  color: white;
+  border: 1px solid #344b69;
+  padding: 10px 17px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 40px 20px;
+}
+
+.hero {
+  padding: 35px;
+  border-radius: 20px;
+  background: linear-gradient(120deg,#172b49,#18203c,#30234d);
+  margin-bottom: 35px;
+}
+
+.hero small {
+  color: #8bd5ff;
+  letter-spacing: 2px;
+}
+
+.hero h1 {
+  font-size: clamp(32px, 6vw, 55px);
+  margin: 17px 0;
+}
+
+.hero p {
+  color: #c0cce0;
+  line-height: 1.7;
+}
+
+.search {
+  width: 100%;
+  padding: 15px;
+  margin: 25px 0;
+  border-radius: 10px;
+  border: 1px solid #34435c;
+  background: #151f32;
+  color: white;
+  outline: none;
+  font-size: 15px;
+}
+
+.section-title {
+  margin: 30px 0 18px;
+  font-size: 21px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+  gap: 17px;
+}
+
+.card {
+  background: #151f32;
+  border: 1px solid #293951;
+  padding: 23px;
+  border-radius: 15px;
+  transition: .3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: #70c9ff;
+}
+
+.icon {
+  font-size: 30px;
+  margin-bottom: 17px;
+}
+
+.card h3 {
+  margin-bottom: 10px;
+}
+
+.card p {
+  color: #9eabc0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.card button {
+  margin-top: 18px;
+  padding: 10px 15px;
+  background: #2469a3;
+  color: white;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.card button:hover {
+  background: #318bd1;
+}
+
+.tool-area {
+  margin-top: 35px;
+  background: #151f32;
+  border: 1px solid #293951;
+  border-radius: 15px;
+  padding: 25px;
+}
+
+.tool-area input,
+.tool-area textarea {
+  width: 100%;
+  padding: 13px;
+  margin: 10px 0;
+  background: #0b1425;
+  border: 1px solid #34435c;
+  color: white;
+  border-radius: 8px;
+}
+
+.tool-area textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.tool-area button {
+  background: #2469a3;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#result {
+  margin-top: 15px;
+  color: #8bd5ff;
+  overflow-wrap: anywhere;
+}
+
+footer {
+  text-align: center;
+  padding: 30px 15px;
+  color: #7d8da5;
+  margin-top: 40px;
+  border-top: 1px solid #26334a;
+  font-size: 13px;
+}
+
+.hidden {
+  display: none;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">NEXORA<span>.</span></div>
+  <button onclick="showHome()">Accueil</button>
+</header>
+
+<main class="container">
+
+<section class="hero">
+  <small>DIGITAL INNOVATION PLATFORM</small>
+  <h1>Explore. Create.<br>Innovate.</h1>
+  <p>
+    Découvrez un nouvel univers numérique.
+    Des outils intelligents, des expériences
+    créatives et des solutions technologiques
+    réunis dans une seule plateforme.
+  </p>
+</section>
+
+<input
+  class="search"
+  id="search"
+  type="search"
+  placeholder="Rechercher un outil..."
+  oninput="searchTools()"
+>
+
+<h2 class="section-title">Explorer NEXORA</h2>
+
+<div class="grid" id="tools">
+
+  <div class="card" data-name="calculatrice calcul">
+    <div class="icon">🧮</div>
+    <h3>Smart Calculator</h3>
+    <p>Effectuez vos calculs rapidement.</p>
+    <button onclick="openTool('calculator')">Explorer</button>
+  </div>
+
+  <div class="card" data-name="générateur texte écriture">
+    <div class="icon">✍️</div>
+    <h3>Text Generator</h3>
+    <p>Générez et personnalisez vos textes.</p>
+    <button onclick="openTool('text')">Explorer</button>
+  </div>
+
+  <div class="card" data-name="création studio">
+    <div class="icon">🎨</div>
+    <h3>Creative Studio</h3>
+    <p>Un espace pour vos idées créatives.</p>
+    <button onclick="openTool('studio')">Explorer</button>
+  </div>
+
+  <div class="card" data-name="innovation laboratoire">
+    <div class="icon">🧪</div>
+    <h3>Innovation Lab</h3>
+    <p>Découvrez nos expériences numériques.</p>
+    <button onclick="openTool('lab')">Explorer</button>
+  </div>
+
+</div>
+
+<section class="tool-area hidden" id="workspace">
+  <button onclick="showHome()">← Retour</button>
+  <div id="toolContent"></div>
+  <div id="result"></div>
+</section>
+
+</main>
+
+<footer>
+  <div class="logo">NEXORA.</div>
+  <p>Explore. Create. Innovate.</p>
+  <p>© 2026 NEXORA Digital Experience</p>
+</footer>
+
+<script>
+
+const workspace = document.getElementById("workspace");
+const content = document.getElementById("toolContent");
+const result = document.getElementById("result");
+
+function showHome() {
+  workspace.classList.add("hidden");
+  result.innerHTML = "";
+  content.innerHTML = "";
+}
+
+function openTool(tool) {
+  workspace.classList.remove("hidden");
+  result.innerHTML = "";
+
+  if (tool === "calculator") {
+    content.innerHTML = `
+      <h2>🧮 Smart Calculator</h2>
+      <p>Entrez deux nombres pour effectuer une opération.</p>
+      <input type="number" id="number1" placeholder="Premier nombre">
+      <input type="number" id="number2" placeholder="Deuxième nombre">
+      <button onclick="calculate('+')">Addition +</button>
+      <button onclick="calculate('-')">Soustraction -</button>
+      <button onclick="calculate('*')">Multiplication ×</button>
+      <button onclick="calculate('/')">Division ÷</button>
+    `;
+  }
+
+  if (tool === "text") {
+    content.innerHTML = `
+      <h2>✍️ Text Generator</h2>
+      <p>Écrivez votre texte et transformez-le.</p>
+      <textarea id="myText" placeholder="Écrivez ici..."></textarea>
+      <button onclick="transformText('upper')">MAJUSCULES</button>
+      <button onclick="transformText('lower')">minuscules</button>
+      <button onclick="transformText('count')">Compter les mots</button>
+    `;
+  }
+
+  if (tool === "studio") {
+    content.innerHTML = `
+      <h2>🎨 Creative Studio</h2>
+      <p>Choisissez une couleur pour découvrir votre espace créatif.</p>
+      <input type="color" id="myColor" value="#70c9ff">
+      <button onclick="changeColor()">Appliquer la couleur</button>
+    `;
+  }
+
+  if (tool === "lab") {
+    content.innerHTML = `
+      <h2>🧪 Innovation Lab</h2>
+      <p>Votre laboratoire d'expérimentation numérique.</p>
+      <button onclick="randomNumber()">Générer un nombre aléatoire</button>
+      <button onclick="showDate()">Afficher la date</button>
+    `;
+  }
+
+  workspace.scrollIntoView({behavior:"smooth"});
+}
+
+function calculate(operation) {
+  const a = parseFloat(document.getElementById("number1").value);
+  const b = parseFloat(document.getElementById("number2").value);
+
+  if (!Number.isFinite(a) || !Number.isFinite(b)) {
+    result.textContent = "Veuillez entrer deux nombres.";
+    return;
+  }
+
+  if (operation === "/" && b === 0) {
+    result.textContent = "Division par zéro impossible.";
+    return;
+  }
+
+  let answer;
+
+  if (operation === "+") answer = a + b;
+  if (operation === "-") answer = a - b;
+  if (operation === "*") answer = a * b;
+  if (operation === "/") answer = a / b;
+
+  result.textContent = "Résultat : " + answer;
+}
+
+function transformText(type) {
+  const text = document.getElementById("myText").value;
+
+  if (!text.trim()) {
+    result.textContent = "Écrivez d'abord un texte.";
+    return;
+  }
+
+  if (type === "upper") result.textContent = text.toUpperCase();
+  if (type === "lower") result.textContent = text.toLowerCase();
+  if (type === "count") {
+    const words = text.trim().split(/\s+/).length;
+    result.textContent = "Nombre de mots : " + words;
+  }
+}
+
+function changeColor() {
+  const color = document.getElementById("myColor").value;
+  document.body.style.background = color;
+  result.textContent = "Couleur appliquée !";
+}
+
+function randomNumber() {
+  const number = Math.floor(Math.random() * 1000) + 1;
+  result.textContent = "Votre nombre : " + number;
+}
+
+function showDate() {
+  result.textContent = "Date et heure : " + new Date().toLocaleString("fr-FR");
+}
+
+function searchTools() {
+  const search = document.getElementById("search").value.toLowerCase();
+
+  document.querySelectorAll(".card").forEach(card => {
+    const name = card.dataset.name.toLowerCase();
+    card.classList.toggle("hidden", !name.includes(search));
+  });
+}
+
+</script>
+
+</body>
+</html>
